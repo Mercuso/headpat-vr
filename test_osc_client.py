@@ -21,6 +21,5 @@ if __name__ == "__main__":
   client = udp_client.SimpleUDPClient(args.ip, args.port)
 
   for x in range(10):
-    client.send_message("/avatar/parameters/pat_left", random.random())
+    client.send_message("/avatar/parameters/pat_right", random.random())
     time.sleep(1)
-  client.send_message("/avatar/parameters/pat_left", 0.0)
