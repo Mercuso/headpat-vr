@@ -4,25 +4,29 @@ import logging
 from zeroconf.asyncio import (
     AsyncZeroconf,
 )
+from zeroconf import NotRunningException
 import config
 
 class ClientProtocol:
     def connection_made(self, transport):
-        logging.info("Connection made")
+        logging.info("[UDP client] Connection made")
 
     def datagram_received(self, data, addr):
-        logging.debug(f"Recieved: {data.decode()}")
+        logging.debug(f"[UDP client] Recieved: {data.decode()}")
 
     def error_received(self, exc):
-        logging.error("UDP socket error", exc_info=exc)
+        logging.error("[UDP client] socket error", exc_info=exc)
 
     def connection_lost(self, exc):
-        logging.info("Connection closed")
+        logging.info("[UDP client] Connection closed")
 
 udp_transport = None
 
 async def get_patstrap_ip() -> str | None:
-    info = await AsyncZeroconf().async_get_service_info("_http._tcp.local.", f"{config.DEVICE_MDNS_NAME}._http._tcp.local.")
+    try: 
+        info = await AsyncZeroconf().async_get_service_info("_http._tcp.local.", f"{config.DEVICE_MDNS_NAME}._http._tcp.local.")
+    except NotRunningException:
+        info = None
     if not info:
         return None
     addresses = info.parsed_scoped_addresses()
@@ -32,7 +36,8 @@ async def open_socket_connection():
     patstrap_ip = None
     while not patstrap_ip:
         patstrap_ip = await get_patstrap_ip()
-        time.sleep(1)
+        if not patstrap_ip:
+            time.sleep(1)
     loop = asyncio.get_running_loop()
     return await loop.create_datagram_endpoint(
         lambda: ClientProtocol(),

@@ -1,7 +1,11 @@
 import asyncio
+import logging
+import sys
 from pythonosc.osc_server import AsyncIOOSCUDPServer
 import config
 from dispatcher import dispatcher
+
+logging.basicConfig(stream=sys.stdout, level=logging.DEBUG)
 
 async def main():
     loop = asyncio.get_running_loop()
