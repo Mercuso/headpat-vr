@@ -111,4 +111,6 @@ https://github.com/danielfvm/Patstrap?tab=readme-ov-file#vrchat
 > [!WARNING]  
 > The case and mounting system is in active development. The 3D models will change soon
 
-The latest assembly instructions can be found here TODO: add link to the document with assembly process description
+The latest assembly instructions can be found here:
+- [NodeMCU case assembly](docs/MC_CASE_ASSEMBLY.md)
+- [Head mount assembly](docs/HEAD_MOUNT_ASSEMBLY.md)
