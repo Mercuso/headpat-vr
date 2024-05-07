@@ -8,13 +8,13 @@ Feel VR head pats in real life!
 This device monitors hand contacts with a head in VRChat and reproduces cuddles on a head in real life using brushes controlled by servo motors
 ![patbandvr](https://github.com/Mercuso/headpat-vr/assets/18481258/d4069ea7-765f-457f-817b-56fe676c67cd)
 
-Inspired by a similar device that uses vibrating motors
+Inspired by a [similar project that uses vibrating motors](https://github.com/danielfvm/Patstrap)
 Why another version?
 I found vibrations on a head too unpleasant and decided to try to reproduce head pats in another way
 
 ### Project parts
 **Server**  
-This repository includes only the server application that should be launched on the PC along with VRChat. You can download the server source code and launch it by instructions in Setup->Server section. It doesn't have UI but provides useful logs to give you understanding of what's going on
+This repository includes only the server application that should be launched on the PC along with VRChat. You can download the server source code and launch it by instructions in Setup->Server section. It doesn't have UI but provides useful logs to give you an understanding of what's going on
 
 **Firmware**  
 The source code can be found [here](https://github.com/Mercuso/headpat-vr-esp). it is written based on Arduino framework. You need PlatformIO IDE to compile and upload it to your esp8266 controller
@@ -35,10 +35,10 @@ The source code can be found [here](https://github.com/Mercuso/headpat-vr-esp). 
 By this moment, only NodeMCU v3 microcontroller was tested. However, the range of controllers that satisfy the requirements should be wider. It must be ESP8266 board that can handle power load from 2 servo motors
 
 #### Servo motors
-It's just a motor with the ability to control its position
-You can read more about its basics here: https://docs.arduino.cc/tutorials/generic/basic-servo-control/
-In this project, the SG90 motor is used. There are 2 motors needed - for the left and right side
-Example from Aliexpress: https://www.aliexpress.com/item/1005005912678947.html?spm=a2g0o.detail.1000023.1.4e0bb941ZYbLUj
+It's just a motor with the ability to control its position. 
+You can read more about its basics here: https://docs.arduino.cc/tutorials/generic/basic-servo-control/. 
+In this project, the TowerPro SG90 motor is used. You can find its specs here: https://www.towerpro.com.tw/product/sg90-analog/. 
+There are 2 motors needed - for the left and right side. 
 
 #### Wires
 In theory, motors can be connected to the microcontroller pins directly, with their connectors. However, the wires are too short to place the microcontroller in a convenient position. Also, one of the motors can't be connected directly through the 3-pin connector because the board doesn't have enough pins with the required relative position to connect 2 motors at once. That's why, additional wires are needed. The *male-to-female dupont jumper wires* can be used to resolve this issue without soldering  
@@ -49,8 +49,8 @@ To keep the microcontroller from damage, it must be secured in a plastic case th
 
 #### Fasteners
 - M2x8 screw (4 items)
-- M3x40 DIN912 screw (2 items)
-- M3x8 DIN912 screws (8 items)
+- M3x30 DIN912 screw (2 items)
+- M3x10 DIN912 screws (8 items)
 
 It's recommended to have spare parts for the case if something is damaged or missing
 
@@ -69,7 +69,7 @@ The result should look like this:
 The documentation and source code of the firmware can be found [here](https://github.com/Mercuso/headpat-vr-esp)
 
 ### Server
-Unfortunately, I haven't found how to build the executable file from the Python scripts at the moment. It will be done in the future. The only option for now - install the project dependencies manually and launch it from the Windows terminal  
+I have an issue with building the executable file from the Python scripts. It will be resolved soon. The only option for now - install the project dependencies manually and launch it from the Windows terminal  
 
 First, make sure you have Python installed in your operating system. If not, you can find installation instructions here: https://www.python.org/downloads/windows/  
 Download or clone this repository, navigate to its folder, right-click here, and select "Open in Windows terminal"  
