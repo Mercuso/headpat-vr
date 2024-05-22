@@ -24,7 +24,7 @@ udp_transport = None
 
 async def get_patstrap_ip() -> str | None:
     try: 
-        info = await AsyncZeroconf().async_get_service_info("_http._tcp.local.", f"{config.DEVICE_MDNS_NAME}._http._tcp.local.")
+        info = await AsyncZeroconf().async_get_service_info("_http._udp.local.", f"{config.DEVICE_MDNS_NAME}._http._udp.local.")
     except NotRunningException:
         info = None
     if not info:

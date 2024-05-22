@@ -17,5 +17,5 @@ if __name__ == "__main__":
   for x in range(args.range):
     value = x/args.range
     print(value)
-    client.send_message("/avatar/parameters/pat_left", 0.2)
+    client.send_message("/avatar/parameters/pat_left", value)
     time.sleep(0.1)
