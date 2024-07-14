@@ -5,7 +5,7 @@ from storage import storage
 from serializers import serialize_collision_data
 
 async def _send_data(value: float, side: str):
-    if time.time() - storage.last_sent_at_ts < 1:
+    if time.time() - storage.last_sent_at_ts < 0.2:
         return
     if side == 'left':
         storage.lvalue = value

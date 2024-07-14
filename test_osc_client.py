@@ -8,7 +8,7 @@ if __name__ == "__main__":
       help="The ip of the OSC server")
   parser.add_argument("--port", type=int, default=9001,
       help="The port the OSC server is listening on")
-  parser.add_argument("--range", type=int, default=10,
+  parser.add_argument("--range", type=int, default=20,
       help="Number of iterations to increase speed from 0 (min) to 1 (max)")
   args = parser.parse_args()
 

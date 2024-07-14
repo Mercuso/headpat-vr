@@ -69,39 +69,8 @@ The result should look like this:
 The documentation and source code of the firmware can be found [here](https://github.com/Mercuso/headpat-vr-esp)
 
 ### Server
-I have an issue with building the executable file from the Python scripts. It will be resolved soon. The only option for now - install the project dependencies manually and launch it from the Windows terminal  
-
-First, make sure you have Python installed in your operating system. If not, you can find installation instructions here: https://www.python.org/downloads/windows/  
-Download or clone this repository, navigate to its folder, right-click here, and select "Open in Windows terminal"  
-From the terminal, execute the following command:
-```powershell
-Set-ExecutionPolicy -Scope Process
-```
-It will allow the execution of Python scripts  
-Then, create the virtual environment folder for installing the project dependencies locally:
-```powershell
-python  -m venv .\.venv 
-```
-and activate it:
-```powershell
-.venv\Scripts\activate
-```
-Next step - install project dependencies:
-```powershell
-pip install -r requirements.txt
-```
-Now everything is ready for launching the server  
-From the same terminal execute the following command:
-```powershell
-python server.py
-```
-
-After that, whenever you need to launch the server, you need to open a terminal from the same folder, execute the virtual environment activation command, and execute the script:
-```powershell
-Set-ExecutionPolicy -Scope Process
-.venv\Scripts\activate
-python server.py
-```
+The latets binary file can be downloaded from the [Releases](https://github.com/Mercuso/headpat-vr/releases) section
+Alternatively, you can build it locally. Download repository, install python and execute the `build.bat` file. The executable file will be located in the `dist` folder
 
 ### Preparing VRChat avatar
 Follow the instructions described in the Patstrap project documentation's VRChat section:  
