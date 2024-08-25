@@ -2,36 +2,54 @@
 
 ## Tools
 For this assembly, you need the following tools:
-- Screwdriver
 - 2.5mm  Allen key
+- pliers (optional)
 
 ## Materials
-For this step, you need to print all the parts listed here: https://www.printables.com/model/868170-nodemcu-v3-case
-- nodemcu_case_base (x1)
-- nodemcu_case_pins_cover (x2)
-- nodemcu_case_wires_fixator (x1)
-You're not limited in the microcontroller case choices, you can pick any or develop your own
-
-![nodemcu_case_parts](https://github.com/Mercuso/headpat-vr/assets/18481258/18c8934b-916b-43bd-9bed-4f2eace0c956)
+For this step, you need to print all the parts listed here: TODO: add link
+- board_ext_base (x1)
+- hook (x2)
+Also, you need M3x10 screws (5 items) and M3 nuts for them 
+![mc_base_parts](https://github.com/user-attachments/assets/84b2b7b8-d76b-439c-9e01-2ea7dcf7a41e)
 
 ## Assembly
-Although it is possible to use dupont connectors to connect one of the motors to the microcontroller, I found mine too loose and soldered my connector from the pin headers from Wemos D1 mini board. You will see it in the pictures below instead of dupont ones  
+Position the board extension to the base as it is shown on the picture
+![mc-base-step-1](https://github.com/user-attachments/assets/42693df6-f7fc-420c-a74d-81cdf7a5d9e6)
+![mc-base-step-1-1](https://github.com/user-attachments/assets/0335bf30-41f5-48d3-85a6-528c8432e94f)
 
-Guide the wires as it is shown in the picture below. Choose the proper side using the wiring schematics from the main documentation
-![wires_guiding](https://github.com/Mercuso/headpat-vr/assets/18481258/be62121d-8013-4fb1-aaab-502a7d18e003)
 
-Put the microcontroller into the base and connect the wires
-![connecting_wires](https://github.com/Mercuso/headpat-vr/assets/18481258/7665d16a-1684-4824-982b-8b31d2ed4e1c)
+Insert the screws and tighten the nuts on the opposite side
+![mc-base-step-2](https://github.com/user-attachments/assets/f1a5e979-8e2f-4c08-82fc-34b6ebad6119)
+![mc-base-step-2-1](https://github.com/user-attachments/assets/a50d875f-2b56-4529-9e70-2a61c5c629c6)
 
-Position the pins covers
-![positioning_pins_covers](https://github.com/Mercuso/headpat-vr/assets/18481258/e0881002-13f3-4d85-8b24-c0362a945bf2)
 
-It's recommended to use a textile sleeve (8 mm diameter) to wrap the wires  
-Guide the wires to the side opposite to the micro USB port, and wrap them into the textile sleeve (optionally). Secure one side of the pins covers with M3x10 screws
-![guiding_wires](https://github.com/Mercuso/headpat-vr/assets/18481258/a314355a-763a-419c-9cb3-7832ce5058c2)
+Put the nuts inside hooks
+![mc-base-step-3](https://github.com/user-attachments/assets/944d5cf9-bb50-455e-9f74-5307202f3a42)
+![mc-base-step-3-1](https://github.com/user-attachments/assets/276adc49-a85e-4908-9994-5dd67b629475)
 
-Finally, tighten another 2 M3x10 screws to the wires lock and secure another side of the pin covers with them. Do not overtighten the screws to avoid damaging wires
-![secure_wires_fix](https://github.com/Mercuso/headpat-vr/assets/18481258/7b4aaf9a-2408-4b0a-9980-799b52988811)
 
-The result should look like this:
-![result](https://github.com/Mercuso/headpat-vr/assets/18481258/c2533787-7a2c-4e79-a5c1-1b7ff7752a1f)
+Insert screws into remaining basement holes. Secure hooks with these scews. Don't fully tighten them
+![mc-base-step-4](https://github.com/user-attachments/assets/eee1269a-8a89-4ec3-8ab9-54913cf8429b)
+![mc-base-step-4-1](https://github.com/user-attachments/assets/102df88c-05ed-4a20-a189-acd405553fb5)
+![mc-base-step-4-2](https://github.com/user-attachments/assets/84ff77ab-8b44-4bfe-9d41-87c071c104d6)
+
+
+Position the basement on the edge of the front part of the headset strap using hooks
+![mc-base-step-5](https://github.com/user-attachments/assets/52d5484a-78d5-4c4b-913e-84576d242fce)
+![mc-base-step-5-1](https://github.com/user-attachments/assets/a44a106c-cd74-4b30-ac53-c8e17ceadf14)
+
+
+Fully tighten the screws
+![mc-base-step-6](https://github.com/user-attachments/assets/676756b2-3b30-4f82-9a6a-54d4e4289ce3)
+
+
+Insert the ESP board to the extension board
+![mc-base-step-7](https://github.com/user-attachments/assets/c93f4b5b-2dc8-4aab-9ad8-162a820988f0)
+
+
+Connect the extension board to the on-board BOBOVR battery or external powerbank
+![mc-base-step-8](https://github.com/user-attachments/assets/43f5f29c-b35e-4e41-b5d7-0bf1741e86ed)
+
+
+The final result
+![mc-base-result](https://github.com/user-attachments/assets/1cb44743-6c13-4dc7-8fb2-3e7514bc48cc)
