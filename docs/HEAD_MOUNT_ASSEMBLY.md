@@ -18,6 +18,8 @@ Fasteners:
 
 Electronics:
 - Micro Servo sg90 servo motor kit (x2)
+- ESP-WROOM-32 38pin board
+- esp-32 expansion board
 
 Other:
 - silicone heads (x2)
@@ -56,28 +58,29 @@ Position the servo mount on the clip as it is shown on the picture and insert th
 ![servo-mount-step-1-8](https://github.com/user-attachments/assets/559bb3f3-3ba7-4b5e-a258-3f90b45cf8ce)
 
 Connect the motor to the microcontroller. The left servo motor should be connected to P12, right - to P14. Connect the microcontroller to a power source and wait until it connects to the WiFi network
-[servo-mount-step-1-9]
+![servo-mount-step-1-9](https://github.com/user-attachments/assets/17d40793-98be-4f03-8ca9-3f48ff4fe1ce)
+
 Once the connection is established, it should move the motor shaft to its start position
 
 Put on the lever adapter. It is needed to attach the silicone brush
-[servo-mount-step-1-10]
+![servo-mount-step-1-10](https://github.com/user-attachments/assets/2ade0d75-eb10-4c16-8df8-7f4d59f38bf8)
 
 Put on the silicone brush
-[servo-mount-step-1-11]
+![servo-mount-step-1-11](https://github.com/user-attachments/assets/4276da5d-9c46-44d9-b061-24c7825bc241)
 
 Position the lever as it is shown in the picture below and tighten the screw. This small screw should be included into the motor kit
-[servo-mount-step-1-12]
-[servo-mount-step-1-13]
+![servo-mount-step-1-12](https://github.com/user-attachments/assets/12736c28-6c6a-4394-b3e7-d15bb98fd760)
+![servo-mount-step-1-13](https://github.com/user-attachments/assets/5ecdb903-3cae-4ac5-a060-8a1cb5b7f246)
 
-
-Repeat same steps for the opposite side. All the parts relative positions should be mirrored horizontally
+Repeat same steps for the opposite side. All the parts relative positions should be mirrored
 
 ### Final adjustments
 Put on the headset, move down the servo mounts and check the contact with your head during movements. Adjust their position by moving the clips horizontally and rotating the servo mounts. Take out headset and tighten the screws to fix the servo moounts
-[servo-mount-step-1-14]
-[servo-mount-step-1-15]
+![servo-mount-step-1-14](https://github.com/user-attachments/assets/e3ba786c-a002-4317-a7ef-26079a6bbd09)
+![servo-mount-step-1-15](https://github.com/user-attachments/assets/e428a879-900e-4de3-8d35-e54031898c19)
 
-Final result
-[servo-mount-step-1-16]
-[servo-mount-step-1-17]
-[servo-mount-step-1-18]
+### Final result
+![servo-mount-step-1-16](https://github.com/user-attachments/assets/4853316f-0fd0-4193-b0ee-1833caf0e85f)
+![servo-mount-step-1-17](https://github.com/user-attachments/assets/23313ad3-3d1b-4337-8863-fd12ab3436be)
+![servo-mount-step-1-18](https://github.com/user-attachments/assets/a0aabb1b-0e08-4108-ac25-18561791dd73)
+
