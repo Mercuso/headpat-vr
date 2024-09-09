@@ -39,6 +39,12 @@ Additional board which purpose is to expand the number of pins to easily connect
 #### Battery
 BOBOVR battery is chosen just because it is already included into the BOBOVR straps system, it outputs 5V 2A which is enough to supply 2 motors (up to 1600mA) and microcontroller board (don't know the exact number, but should be less than 400mA). It can be replaced with any other battery that has the same power
 
+## Brushes
+The easiest option I found is to buy the device that already has silicone brushes, take them off and print the adapter to attach them to the servo motor lever  
+Link to the device: https://www.aliexpress.com/item/1005005692082758.html  
+The brushes can be easily removed without damaging anything, so this device remains operational  
+If you found the similiar silicone brushes that can be bought standalone - please let me know!  
+
 ## Printable parts
 The following parts can be printed on FDM printer:
 
@@ -48,6 +54,7 @@ The following parts can be printed on FDM printer:
 | controller_base_hooks | 2        |
 | servo_mount_clip      | 2        |
 | servo_mount           | 2        |
+| servo_lever_adapter   | 2        |
 
 Recommended material - PLA  
 These parts can be downloaded from here: https://www.printables.com/model/992952-headpatvr-printable-parts  
