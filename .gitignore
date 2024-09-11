@@ -4,4 +4,4 @@ __pycache__
 .DS_Store
 build
 dist
-server.spec
+headpat-vr-server.spec
