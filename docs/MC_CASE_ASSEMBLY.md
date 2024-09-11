@@ -5,10 +5,13 @@ For this assembly, you need the following tools:
 - 2.5mm  Allen key
 - pliers (optional)
 
-## Materials
-For this step, you need to print all the parts listed here: TODO: add link
-- board_ext_base (x1)
-- hook (x2)
+## Parts
+Check the complete parts list with detailed description and where to find them in the [PARTS documentation](docs/PARTS.md)  
+
+For this step, you need to print the parts listed here:
+- controller_base (x1)
+- controller_base_hooks (x2)
+
 Also, you need M3x10 screws (5 items) and M3 nuts for them 
 ![mc_base_parts](https://github.com/user-attachments/assets/84b2b7b8-d76b-439c-9e01-2ea7dcf7a41e)
 

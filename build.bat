@@ -1,5 +1,5 @@
-python -m venv .venv
-call .\.venv\Scripts\activate.bat
+python -m venv .venv  || exit /b
+call .\.venv\Scripts\activate  || exit /b
 pip install -r requirements.txt
 pip install pyinstaller
-pyinstaller --console --onefile  --collect-submodules zeroconf .\server.py
+pyinstaller --console --onefile  --collect-submodules zeroconf --name headpat-vr-server .\server.py

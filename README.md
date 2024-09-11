@@ -53,7 +53,7 @@ The latest assembly instructions can be found here:
 
 ### Server
 The latets binary file can be downloaded from the [Releases](https://github.com/Mercuso/headpat-vr/releases) section
-Alternatively, you can build it locally. Download repository, install python and execute the `build.bat` file. The executable file will be located in the `dist` folder
+Alternatively, you can build it locally. Download repository, install Python and execute the `build.bat` file. The executable file will be located in the `dist` folder
 
 ### Preparing VRChat avatar
 Follow the instructions described in the Patstrap project documentation's VRChat section:  

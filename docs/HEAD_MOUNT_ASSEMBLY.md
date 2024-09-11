@@ -6,9 +6,12 @@ For this assembly, you need the following tools:
 - 2.5mm  Allen key
 
 ## Parts
-For this step, you need the following plastic parts that can be download here: https://www.printables.com/model/992952-headpatvr-printable-parts
+Check the complete parts list with detailed description and where to find them in the [PARTS documentation](docs/PARTS.md)    
+
+For this step, you need the following plastic parts:
 - servo_mount (x2)
 - servo_mount_clip (x2)
+- servo_lever_adapter (x2)
 
 Fasteners:
 - M2x8 screws (x2)
@@ -22,10 +25,7 @@ Electronics:
 - esp-32 expansion board
 
 Other:
-- silicone heads (x2)
-It's hard to find the standalone compact silicone brush
-I use 2 brushes from the scalp massage device from Aliexpress https://www.aliexpress.com/item/1005005692082758.html
-They can be easily taken off without damaging the device
+- silicone brush (x2)
 
 ## Assembly
 
