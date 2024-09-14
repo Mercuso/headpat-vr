@@ -6,7 +6,7 @@ For this assembly, you need the following tools:
 - 2.5mm  Allen key
 
 ## Parts
-Check the complete parts list with detailed description and where to find them in the [PARTS documentation](docs/PARTS.md)    
+Check the complete parts list with detailed description and where to find them in the [PARTS documentation](PARTS.md)    
 
 For this step, you need the following plastic parts:
 - servo_mount (x2)

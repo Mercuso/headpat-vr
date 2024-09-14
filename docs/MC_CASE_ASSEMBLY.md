@@ -6,7 +6,7 @@ For this assembly, you need the following tools:
 - pliers (optional)
 
 ## Parts
-Check the complete parts list with detailed description and where to find them in the [PARTS documentation](docs/PARTS.md)  
+Check the complete parts list with detailed description and where to find them in the [PARTS documentation](PARTS.md)  
 
 For this step, you need to print the parts listed here:
 - controller_base (x1)
