@@ -1,5 +1,4 @@
 import asyncio
-import time
 import logging
 from zeroconf.asyncio import (
     AsyncZeroconf,
@@ -22,31 +21,32 @@ class ClientProtocol:
 
 udp_transport = None
 
-async def get_patstrap_ip() -> str | None:
+async def get_device_ip() -> str | None:
     try: 
         info = await AsyncZeroconf().async_get_service_info("_http._udp.local.", f"{config.DEVICE_MDNS_NAME}._http._udp.local.")
     except NotRunningException:
+        logging.error('[mDNS] NotRunningException')
         info = None
     if not info:
+        logging.debug('[mDNS] IP not found')
         return None
     addresses = info.parsed_scoped_addresses()
     return addresses[0]
 
 async def open_socket_connection():
-    patstrap_ip = None
-    while not patstrap_ip:
-        patstrap_ip = await get_patstrap_ip()
-        if not patstrap_ip:
-            time.sleep(1)
+    device_ip = await get_device_ip()
+    if not device_ip:
+        return (None, None)
     loop = asyncio.get_running_loop()
     return await loop.create_datagram_endpoint(
         lambda: ClientProtocol(),
-        remote_addr=(patstrap_ip, 4210)
+        remote_addr=(device_ip, config.DEVICE_PORT),
     )
 
 async def get_udp_transport():
     global udp_transport
     if not udp_transport or udp_transport.is_closing():
+        logging.debug('[TMP] NO TRANSPORT. opening connection')
         transport, _ = await open_socket_connection()
         udp_transport = transport
     return udp_transport

@@ -5,3 +5,4 @@ __pycache__
 build
 dist
 headpat-vr-server.spec
+tmp
