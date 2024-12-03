@@ -12,12 +12,21 @@ class ClientProtocol:
 
     def datagram_received(self, data, addr):
         logging.debug(f"[UDP client] Recieved: {data.decode()}")
+        for cb in self._callbacks:
+            cb(data, addr)
 
     def error_received(self, exc):
         logging.error("[UDP client] socket error", exc_info=exc)
 
     def connection_lost(self, exc):
         logging.info("[UDP client] Connection closed")
+
+    _callbacks = []
+
+    def register_data_received_callback(self, lambda_fn):
+        if len(self._callbacks) > 10:
+            raise Exception("Too many callbacks")
+        self._callbacks.append(lambda_fn)
 
 udp_transport = None
 

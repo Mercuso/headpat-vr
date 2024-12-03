@@ -6,6 +6,7 @@ from pythonosc.osc_server import AsyncIOOSCUDPServer
 import config
 from dispatcher import dispatcher
 from ws import register
+from heartbeat import ping_device
 
 logging.basicConfig(stream=sys.stdout, level=logging.DEBUG)
 
@@ -18,9 +19,13 @@ async def ws_main():
     async with websockets.serve(register, "localhost", 8765) as server:
         await server.serve_forever()
 
+async def heartbeat_main():
+    await ping_device()
+
 async def main():
     task1 = asyncio.create_task(osc_main())
     task2 = asyncio.create_task(ws_main())
+    task3 = asyncio.create_task(heartbeat_main())
     await asyncio.gather(task1, task2)
 
 asyncio.run(main())
