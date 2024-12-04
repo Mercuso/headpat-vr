@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HeadPat-VR Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #1e1e2e; /* Darkest color from palette */
+            color: #c6d0f5; /* Lightest color for text */
+        }
+
+        h1, h2, h3 {
+            color: #cba6f7; /* Bright pink for headings */
+        }
+
+        .control-block {
+            background-color: #181825; /* Second darkest color */
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            /*box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);*/
+            max-width: 500px;
+        }
+
+        .control-block-item {
+            margin-bottom: 20px;
+        }
+
+        .control-row-item {
+            display: flex;
+            align-items: center;
+        }
+        .control-column-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+
+        .connected {
+            color: #a6d189;
+        }
+        .connecting {
+            color: #e5c890;
+        }
+
+        .control-block h2 {
+            margin: 0 0 10px;
+            color: #cdd6f4; /* Bright pink for headings */
+        }
+
+        .status-indicator {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            background-color: red;
+            border-radius: 50%;
+            vertical-align: middle;
+            margin-right: 8px;
+        }
+
+        .online {
+            background-color: #a6d189; /* Light peach for online indicator */
+        }
+
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 24px;
+        }
+
+        .toggle-switch input {
+            display: none;
+        }
+
+        .toggle-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #8E8E8E; /* Bright pink */
+            transition: 0.4s;
+            border-radius: 24px;
+        }
+
+        .toggle-slider:before {
+            position: absolute;
+            content: "";
+            height: 18px;
+            width: 18px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            transition: 0.4s;
+            border-radius: 50%;
+        }
+
+        input:checked + .toggle-slider {
+            background-color: #e64553; /* Light peach for active state */
+        }
+
+        input:checked + .toggle-slider:before {
+            transform: translateX(26px);
+        }
+
+        #max-intensity {
+            width: 100%;
+        }
+        #max-intensity-test {
+            width: 100%;
+        }
+
+        button {
+            background-color: #e64553; /* Bright pink */
+            border: none;
+            color: #FFF;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #FE9677; /* Light peach on hover */
+        }
+
+        /* Chrome, Safari, Edge, Opera */
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+        /* Firefox */
+        input[type=number] {
+            -moz-appearance: textfield;
+        }
+        input[type=number] {
+            background-color: transparent;
+            color: #c6d0f5;
+            border: 1px solid #626880;
+            border-radius: 3px;
+            height: 30px;
+            text-indent: 6px;
+        }
+    </style>
+    <style>
+        .progress-bar {
+            width: 100%;
+            background-color: #494d64;
+            padding: 3px;
+            border-radius: 3px;
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, .2);
+        }
+
+        .progress-bar-fill {
+            display: block;
+            height: 22px;
+            background-color: #cdd6f4;
+            border-radius: 3px;
+
+            transition: width 500ms ease-in-out;
+        }
+    </style>
+</head>
+<body>
+
+<h1>HeadPat-VR</h1>
+<h3 id="connection-status">Connecting to server...</h3>
+<div class="control-block">
+    <h2>Device Status</h2>
+    <div class="control-block-item">
+        <span class="status-indicator" id="status-indicator"></span>
+        <span id="status-text">Offline</span>
+    </div>
+    <div class="control-block-item">
+        <span>L intensity</span>
+        <div class="progress-bar">
+            <span id="l-intensity-bar" class="progress-bar-fill" style="width: 0%;"></span>
+        </div>
+    </div>
+    <div class="control-block-item">
+        <span>R intensity</span>
+        <div class="progress-bar">
+            <span id="r-intensity-bar" class="progress-bar-fill" style="width: 0%;"></span>
+        </div>
+    </div>
+</div>
+<div class="control-block">
+    <h2>Settings</h2>
+    <div class="control-block-item control-row-item">
+        <span>Send signals to device</span>
+        <label class="toggle-switch" style="margin-left: 10px;">
+            <input type="checkbox" id="device-active" checked>
+            <span class="toggle-slider"></span>
+        </label>
+    </div>
+    <div class="control-block-item">
+        <label for="max-intensity">Max Intensity</label>
+        <input type="range" id="max-intensity" min="0" max="100" value="50">
+    </div>
+</div>
+
+<div class="control-block">
+    <h2>Testing</h2>
+    <div class="control-block-item">
+        <label for="max-intensity-test">Intensity</label>
+        <input type="range" id="max-intensity-test" min="0" max="100" value="50">
+    </div>
+    <div class="control-block-item control-column-item">
+        <label for="test-signal-duration" style="margin-bottom: 5px;">Duration (s)</label>
+        <input id="test-signal-duration" type="number">
+    </div>
+    <div class="control-block-item control-row-item">
+        <button id="test-signal">Send Test Signal</button>
+    </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    let ws;
+
+    const statusIndicator = document.getElementById('status-indicator');
+    const statusText = document.getElementById('status-text');
+    const deviceActiveCheckbox = document.getElementById('device-active');
+    const maxIntensitySlider = document.getElementById('max-intensity');
+    const testSignalButton = document.getElementById('test-signal');
+    const connectionStatus = document.getElementById('connection-status');
+
+    const eventTypes = {
+      deviceStatus: 'deviceStatus',
+      maxIntensity: 'maxIntensity',
+      testSignal: 'testSignal'
+    }
+
+    function parseIntensity(value) {
+      return value * 100
+    }
+    function formatIntensity(value) {
+      return (value / 100)
+    }
+
+    function setDeviceStatus(online) {
+      if (online) {
+        statusIndicator.classList.add('online');
+        statusText.textContent = 'Online';
+      } else {
+        statusIndicator.classList.remove('online');
+        statusText.textContent = 'Offline';
+      }
+    }
+    function setMaxIntensity(intensity) {
+      maxIntensitySlider.value = (intensity);
+    }
+    function setDeviceActive(active) {
+      deviceActiveCheckbox.checked = active;
+    }
+
+    function connectWebSocket() {
+      ws = new WebSocket('ws://localhost:8765'); // Update with your server URL
+
+      ws.onopen = function() {
+        console.log('WebSocket connection opened');
+        connectionStatus.textContent = 'Connected';
+        connectionStatus.classList.remove('connecting');
+        connectionStatus.classList.add('connected');
+      };
+
+      ws.onmessage = function(event) {
+        const data = JSON.parse(event.data);
+        console.log('Message from server:', data);
+        if (data.type==='state') {
+          const state = data.value
+          setDeviceStatus(state.deviceStatus);
+          setMaxIntensity(parseIntensity(state.maxIntensity));
+          setDeviceActive(state.allowSignalsSending);
+        }
+        if (data.type === 'deviceStatus') {
+          setDeviceStatus(data.value);
+        }
+        if (data.type === 'maxIntensity') {
+          setMaxIntensity(parseIntensity(data.value));
+        }
+        if (data.type === 'allowSignalsSending') {
+          setDeviceActive(data.value);
+        }
+        if (data.type === 'signal') {
+          const {left, right} = data.value;
+          console.log('Received signal:', left, right);
+          document.getElementById('l-intensity-bar').style.width = `${Math.round(left*100)}%`;
+          document.getElementById('r-intensity-bar').style.width = `${Math.round(right*100)}%`;
+        }
+      };
+
+      ws.onclose = function() {
+        console.log('WebSocket connection closed');
+        // statusIndicator.classList.remove('online');
+        // statusText.textContent = 'Offline';
+
+        // Reconnect after a delay
+        console.log('Reconnecting in 1 second');
+        connectionStatus.textContent = 'Reconnecting...';
+        connectionStatus.classList.remove('connected');
+        connectionStatus.classList.add('connecting');
+        setTimeout(connectWebSocket, 1000);
+      };
+
+      ws.onerror = function(error) {
+        console.error('WebSocket error:', error);
+      };
+    }
+
+    function sendDeviceStatus() {
+      if (ws.readyState === WebSocket.OPEN) {
+        const message = {
+          type: eventTypes.deviceStatus,
+          active: deviceActiveCheckbox.checked
+        };
+        ws.send(JSON.stringify(message));
+      }
+    }
+
+    function sendMaxIntensity() {
+      if (ws.readyState === WebSocket.OPEN) {
+        const message = {
+          type: eventTypes.maxIntensity,
+          value: formatIntensity(maxIntensitySlider.value)
+        };
+        console.log('Sending max intensity:', message);
+        ws.send(JSON.stringify(message));
+      }
+    }
+
+    function sendTestSignal() {
+      if (ws.readyState === WebSocket.OPEN) {
+        const message = {
+          type: eventTypes.testSignal,
+          value: formatIntensity(document.getElementById('max-intensity-test').value),
+        };
+        ws.send(JSON.stringify(message));
+      }
+    }
+
+    // Event listeners
+    deviceActiveCheckbox.addEventListener('change', sendDeviceStatus);
+    maxIntensitySlider.addEventListener('input', sendMaxIntensity);
+    testSignalButton.addEventListener('click', sendTestSignal);
+
+    // Initialize WebSocket connection
+    connectWebSocket();
+  });
+</script>
+
+</body>
+</html>
