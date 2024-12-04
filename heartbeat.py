@@ -1,27 +1,36 @@
 import asyncio
 import time
-from storage import storage
-from client import get_udp_transport
-
-last_hb_received_at_ts: float = 0.0 # seconds
+import logging
+import json
+from websockets.asyncio.server import broadcast
+from storage import storage, WS_CONNECTIONS
+from client import get_udp_transport, udp_client_protocol
 
 def data_received_callback (data, addr):
-    global last_hb_received_at_ts
-    last_hb_received_at_ts = time.time()
+    storage.last_hb_received_at_ts = time.time()
+    logging.debug('[HB] Device replied')
 
 async def ping_device():
-    # ping device every 5 seconds before first response received
-    # increase delay to 10 seconds after that
-    # skip sending ping request if osc signal was received less than 5 seconds ago
-    global last_hb_received_at_ts
-    transport = await get_udp_transport()
-    protocol = transport.get_protocol()
-    protocol.register_data_received_callback(data_received_callback)
+    udp_client_protocol.register_data_received_callback(data_received_callback)
     while True:
-        delay = 10 # default
+        transport = await get_udp_transport()
+        now = time.time()
         if transport:
-            print(last_hb_received_at_ts is not None)
-            now = time.time()
-            if time.time() - last_hb_received_at_ts > delay:
-                transport.sendto(b'\x00')
-        await asyncio.sleep(delay)
+            logging.debug('[HB] Ping device')
+            transport.sendto(b'\x00')
+            print(time.time())
+            storage.last_hb_received_at_ts = 0.0
+            await asyncio.sleep(4)
+            if storage.last_hb_received_at_ts == 0.0:
+                logging.debug('[HB] device is offline (no response in 4 sec)')
+                if storage.is_device_online:
+                    storage.is_device_online = False
+                    broadcast(WS_CONNECTIONS, json.dumps({"type": "deviceStatus", "value": False}))
+            else:
+                if not storage.is_device_online:
+                    storage.is_device_online = True
+                    broadcast(WS_CONNECTIONS, json.dumps({"type": "deviceStatus", "value": True}))
+                await asyncio.sleep(6)
+        else:
+            await asyncio.sleep(2)
+

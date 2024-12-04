@@ -1,12 +1,13 @@
 import json
 import logging
 from websockets.asyncio.server import broadcast
-from storage import storage, WS_CONNECTIONS
+from storage import Storage, storage, WS_CONNECTIONS
 from handlers import pat_left_handler, pat_right_handler
 
-def get_state(storage):
+def get_state(storage: Storage):
     return {
-        "deviceStatus": True,
+        "lastHeartbeatReceivedAt": storage.last_hb_received_at_ts,
+        "deviceStatus": storage.is_device_online,
         "allowSignalsSending": storage.allow_signal_sending,
         "maxIntensity": storage.max_intensity 
     }
@@ -14,7 +15,6 @@ def get_state(storage):
 async def register(websocket):
     global storage
     WS_CONNECTIONS.add(websocket)
-    await websocket.send('{"type": "deviceStatus", "value": true}')
     # send app state
     state = get_state(storage)
     await websocket.send(json.dumps({"type": "state", "value": state}))
@@ -23,7 +23,6 @@ async def register(websocket):
             # TODO: add validation
             logging.debug(f"[WS Handler] data received: {message}")
             event = json.loads(message)
-            print(message)
             event_type = event["type"]
             if event_type == "allowSignalsSending":
                 storage.allow_signal_sending = event["value"]

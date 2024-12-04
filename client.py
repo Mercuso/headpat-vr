@@ -28,6 +28,7 @@ class ClientProtocol:
             raise Exception("Too many callbacks")
         self._callbacks.append(lambda_fn)
 
+udp_client_protocol = ClientProtocol()
 udp_transport = None
 
 async def get_device_ip() -> str | None:
@@ -48,7 +49,7 @@ async def open_socket_connection():
         return (None, None)
     loop = asyncio.get_running_loop()
     return await loop.create_datagram_endpoint(
-        lambda: ClientProtocol(),
+        lambda: udp_client_protocol,
         remote_addr=(device_ip, config.DEVICE_PORT),
     )
 

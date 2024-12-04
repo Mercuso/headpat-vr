@@ -23,7 +23,14 @@ async def _send_data(value: float, side: str):
         storage.last_sent_at_ts = time.time()
     else:
         logging.debug(f"[OSC Handler] Cannot connect to device to send data")
-    broadcast(WS_CONNECTIONS, json.dumps({"type": "signal", "value": {"left": storage.lvalue, "right": storage.rvalue}}))
+    data = {
+        "type": "signal", 
+        "value": {
+            "left": storage.lvalue,
+            "right": storage.rvalue,
+        }
+    }
+    broadcast(WS_CONNECTIONS, json.dumps(data))
 
 async def pat_left_handler(_, value: float):
     await _send_data(value, 'left')
