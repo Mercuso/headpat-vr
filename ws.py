@@ -34,7 +34,6 @@ async def register(websocket):
                 intensity = event["value"]
                 await pat_left_handler(None, intensity)
                 await pat_right_handler(None, intensity)
-        # await websocket.wait_closed()
     finally:
         WS_CONNECTIONS.remove(websocket)
 

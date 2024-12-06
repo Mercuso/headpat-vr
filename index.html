@@ -110,7 +110,7 @@
         #max-intensity {
             width: 100%;
         }
-        #max-intensity-test {
+        #intensity-test {
             width: 100%;
         }
 
@@ -208,8 +208,8 @@
 <div class="control-block">
     <h2>Testing</h2>
     <div class="control-block-item">
-        <label for="max-intensity-test">Intensity</label>
-        <input type="range" id="max-intensity-test" min="0" max="100" value="50">
+        <label for="intensity-test">Intensity</label>
+        <input type="range" id="intensity-test" min="0" max="100" value="50">
     </div>
     <div class="control-block-item control-column-item">
         <label for="test-signal-duration" style="margin-bottom: 5px;">Duration (s)</label>
@@ -339,9 +339,21 @@
       if (ws.readyState === WebSocket.OPEN) {
         const message = {
           type: eventTypes.testSignal,
-          value: formatIntensity(document.getElementById('max-intensity-test').value),
+          value: formatIntensity(document.getElementById('intensity-test').value),
         };
-        ws.send(JSON.stringify(message));
+        const duration = (document.getElementById('test-signal-duration').value || 0) * 1000;
+        console.log('duration:', duration);
+        const pause = 200;
+        let steps = Math.floor(duration / pause);
+        const intervalId = setInterval(() => {
+          console.log('Sending test signal:', message);
+          ws.send(JSON.stringify(message));
+          steps--;
+          if (steps <= 0) {
+            clearInterval(intervalId);
+          }
+        }, pause);
+        // ws.send(JSON.stringify(message));
       }
     }
 

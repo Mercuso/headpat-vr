@@ -2,6 +2,7 @@ import asyncio
 import logging
 import sys
 import websockets
+import webbrowser
 from aiohttp import web
 from pythonosc.osc_server import AsyncIOOSCUDPServer
 import config
@@ -17,7 +18,7 @@ async def osc_main():
     return await server.create_serve_endpoint()
 
 async def ws_main():
-    async with websockets.serve(register, "localhost", 8765) as server:
+    async with websockets.serve(register, "localhost", config.WS_SERVER_PORT) as server:
         await server.serve_forever()
 
 async def handler(request):
@@ -27,8 +28,11 @@ async def http_main():
     server = web.Server(handler)
     runner = web.ServerRunner(server)
     await runner.setup()
-    site = web.TCPSite(runner, 'localhost', 9000)
+    site = web.TCPSite(runner, 'localhost', config.HTTP_SERVER_PORT)
     await site.start()
+    url = f'http://localhost:{config.HTTP_SERVER_PORT}'
+    logging.info(f'Dashboard page is available on {url}')
+    webbrowser.open(url, new=0, autoraise=True)
 
 async def heartbeat_main():
     await ping_device()
