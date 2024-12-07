@@ -232,7 +232,7 @@
     const connectionStatus = document.getElementById('connection-status');
 
     const eventTypes = {
-      deviceStatus: 'deviceStatus',
+      allowSignalsSending: 'allowSignalsSending',
       maxIntensity: 'maxIntensity',
       testSignal: 'testSignal'
     }
@@ -317,8 +317,8 @@
     function sendDeviceStatus() {
       if (ws.readyState === WebSocket.OPEN) {
         const message = {
-          type: eventTypes.deviceStatus,
-          active: deviceActiveCheckbox.checked
+          type: eventTypes.allowSignalsSending,
+          value: deviceActiveCheckbox.checked
         };
         ws.send(JSON.stringify(message));
       }
