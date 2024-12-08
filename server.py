@@ -9,6 +9,7 @@ import config
 from dispatcher import dispatcher
 from ws import register
 from heartbeat import ping_device
+from utils import resource_path
 
 logging.basicConfig(stream=sys.stdout, level=logging.DEBUG)
 
@@ -22,7 +23,7 @@ async def ws_main():
         await server.serve_forever()
 
 async def handler(request):
-    html = open('index.html', "r")
+    html = open(resource_path('index.html'), "r")
     return web.Response(text=html.read(), content_type='text/html')
 async def http_main():
     server = web.Server(handler)
