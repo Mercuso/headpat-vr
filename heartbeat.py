@@ -18,7 +18,6 @@ async def ping_device():
         if transport:
             logging.debug('[HB] Ping device')
             transport.sendto(b'\x00')
-            print(time.time())
             storage.last_hb_received_at_ts = 0.0
             await asyncio.sleep(4)
             if storage.last_hb_received_at_ts == 0.0:

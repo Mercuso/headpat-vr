@@ -3,31 +3,45 @@ import time
 import json
 from websockets.asyncio.server import broadcast
 from client import get_udp_transport
-from storage import storage, WS_CONNECTIONS
+from storage import Signal, storage, WS_CONNECTIONS
 from serializers import serialize_collision_data
 
 async def _send_data(value: float, side: str):
-    if time.time() - storage.last_sent_at_ts < 0.2 or not storage.allow_signal_sending:
+    if not storage.allow_signal_sending:
         return
+    value = min(value, storage.max_intensity)
     if side == 'left':
-        storage.lvalue = min(value, storage.max_intensity)
+        prev_lsignal = storage.lsignal
+        if prev_lsignal and time.time() - prev_lsignal.sent_at_ts < 0.2:
+            return
+        storage.lsignal = Signal(value)
     elif side == 'right':
-        storage.rvalue = min(value, storage.max_intensity)
+        prev_rsignal = storage.rsignal
+        if prev_rsignal and time.time() - prev_rsignal.sent_at_ts < 0.2:
+            return
+        storage.rsignal = Signal(value)
     else:
         raise Exception('Invalid side codename')
     transport = await get_udp_transport()
+    lvalue = storage.lsignal.value if storage.lsignal and not storage.lsignal.sent_at_ts else 0.0
+    rvalue = storage.rsignal.value if storage.rsignal and not storage.rsignal.sent_at_ts else 0.0
     if transport:
-        data = serialize_collision_data(storage)
+        data = serialize_collision_data(lvalue, rvalue)
         logging.debug(f"[OSC Handler] Send pat_{side} value: {value}")
+        logging.debug(f"[OSC Handler] Send data: {data}")
         transport.sendto(data)
-        storage.last_sent_at_ts = time.time()
+        now = time.time()
+        if storage.lsignal and storage.lsignal.sent_at_ts == 0.0:
+            storage.lsignal.sent_at_ts = now
+        if storage.rsignal and storage.rsignal.sent_at_ts == 0.0:
+            storage.rsignal.sent_at_ts = now
     else:
         logging.debug(f"[OSC Handler] Cannot connect to device to send data")
     data = {
         "type": "signal", 
         "value": {
-            "left": storage.lvalue,
-            "right": storage.rvalue,
+            "left": lvalue,
+            "right": rvalue,
         }
     }
     broadcast(WS_CONNECTIONS, json.dumps(data))
