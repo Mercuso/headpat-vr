@@ -215,6 +215,12 @@
         <label for="test-signal-duration" style="margin-bottom: 5px;">Duration (s)</label>
         <input id="test-signal-duration" type="number">
     </div>
+    <div class="control-block-item">
+        <input type="checkbox" id="l-side-test" checked>
+        <label for="l-side-test">L</label>
+        <input type="checkbox" id="r-side-test" checked>
+        <label for="r-side-test">R</label>
+    </div>
     <div class="control-block-item control-row-item">
         <button id="test-signal">Send Test Signal</button>
     </div>
@@ -229,6 +235,8 @@
     const deviceActiveCheckbox = document.getElementById('device-active');
     const maxIntensitySlider = document.getElementById('max-intensity');
     const testSignalButton = document.getElementById('test-signal');
+    const testSignalLeft = document.getElementById('l-side-test');
+    const testSignalRight = document.getElementById('r-side-test');
     const connectionStatus = document.getElementById('connection-status');
 
     const eventTypes = {
@@ -330,30 +338,30 @@
           type: eventTypes.maxIntensity,
           value: formatIntensity(maxIntensitySlider.value)
         };
-        console.log('Sending max intensity:', message);
         ws.send(JSON.stringify(message));
       }
     }
 
     function sendTestSignal() {
       if (ws.readyState === WebSocket.OPEN) {
+        const value = formatIntensity(document.getElementById('intensity-test').value);
         const message = {
           type: eventTypes.testSignal,
-          value: formatIntensity(document.getElementById('intensity-test').value),
+          value: {
+            left: testSignalLeft.checked ? value : 0,
+            right: testSignalRight.checked ? value : 0
+          },
         };
         const duration = (document.getElementById('test-signal-duration').value || 0) * 1000;
-        console.log('duration:', duration);
         const pause = 200;
         let steps = Math.floor(duration / pause);
         const intervalId = setInterval(() => {
-          console.log('Sending test signal:', message);
           ws.send(JSON.stringify(message));
           steps--;
           if (steps <= 0) {
             clearInterval(intervalId);
           }
         }, pause);
-        // ws.send(JSON.stringify(message));
       }
     }
 
