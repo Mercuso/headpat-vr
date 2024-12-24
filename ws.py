@@ -32,8 +32,10 @@ async def register(websocket):
             elif event_type == "testSignal":
                 logging.debug('[WS Handler] test signal received')
                 intensity = event["value"]
-                await pat_left_handler(None, intensity)
-                await pat_right_handler(None, intensity)
+                if intensity["left"] > 0:
+                    await pat_left_handler(None, intensity["left"])
+                if intensity["right"] > 0:
+                    await pat_right_handler(None, intensity["right"])
     finally:
         WS_CONNECTIONS.remove(websocket)
 
