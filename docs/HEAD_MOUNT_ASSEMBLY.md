@@ -28,21 +28,34 @@ Other:
 
 ## Assembly
 
+### Torsion spring preparation
+This is the hardest part of the assembly. The torsion spring legs should be bent by 90 degrees angle as it is shown on the picture
+![spring_dimensions](https://github.com/user-attachments/assets/f475abd2-5e5a-442e-8abd-ef8c4ab4f65a)
+
 ### Clip preparation
-Prepare the torsion spring for inserting it into the servo mount clip  
-Bend the torsion spring legs and cut off the tips to the size as it is shown on the picture below
-> [!WARNING]
-> Be careful while cutting off the tips. They can fly away in unpredictable directions and damage your eyes  
 
 Insert M2 nut into the servo mount clip  
 Use screw to simplify this process. The nut hole is stiff, do not afraid to use force to insert it
+![servo_mount_clip_insert_m2_nut](https://github.com/user-attachments/assets/1f66ed0a-fc24-4836-a30b-e63923445708)
 
 Insert the spring into the servo mount clip  
+If the spring leg sticks over the side of the clip, cut it off  
+> [!WARNING]
+> Be careful while cutting off the spring tip. The piece can fly away in unpredictable directions and damage your eyes
+
+![insert_torsion_spring_into_servo_mount_clip](https://github.com/user-attachments/assets/f78bd6d7-50f5-4dd2-9744-0685a4aa84fd)
+![spring_insertion_result](https://github.com/user-attachments/assets/d3db099e-5fbb-41ed-95bf-a614342acbe7)
 
 Align servo mount holes with servo mount clip hole as shown on the picture, the torsion spring leg should come into the servo mount groove
+Cut off the part of the spring leg that sticks outside
+> [!WARNING]
+> Be careful while cutting off the spring tip. The piece can fly away in unpredictable directions and damage your eyes
+
+![join_servo_mount_parts](https://github.com/user-attachments/assets/4f65fec5-5f62-4234-a5be-ca7b982ba9a1)
 
 Join parts with M2X20 screw. Make sure that screw came out into the servo mount hole from the opposite side. Be careful at this moment - if holes are not aligned, the screw can break the bracket  
 Do not overtighten the screw. The parts should move freely
+![fix_servo_mount_parts](https://github.com/user-attachments/assets/dd5187e2-640b-4e42-80e9-b4a36666335c)
 
 Repeat the same steps with another servo mount system
 
