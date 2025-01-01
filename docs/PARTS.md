@@ -45,6 +45,15 @@ Link to the device: https://www.aliexpress.com/item/1005005692082758.html
 The brushes can be easily removed without damaging anything, so this device remains operational  
 If you found the similiar silicone brushes that can be bought standalone - please let me know!  
 
+## Torsion springs
+Can be bought somewhere (for example, [on Aliexpress](https://www.aliexpress.com/item/1005007436082760.html)) or taken off from a hair clamp that have torsion spring  
+Required dimensions:  
+External diameter - 3.8-4mm  
+Number of laps - up to 8  
+Wire diameter - 0.7mm  
+The number of laps can vary, depending on desired pressure of a brush to a head  
+You can also try to experiment with other parameters. The main requirement - the internal diameter should be slightly bigger than 2mm to be able to insert the screw that works as an axis
+
 ## Printable parts
 The following parts can be printed on FDM printer:
 
