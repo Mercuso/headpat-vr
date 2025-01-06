@@ -1,24 +1,29 @@
 # HeadpatVR
-Device that brings tactile feelings of VR head pats using mechanical force applied by brushes 
-> [!WARNING]
-> This project is in the development phase. Please note that components of the project are subject to frequent changes
 
+[**Youtube overview**](https://youtu.be/_8gu3-EAek4)
+
+[![headpat-vr video](https://github.com/user-attachments/assets/1d326cb8-603f-4faa-afb7-9dde99af52e4)](https://youtu.be/_8gu3-EAek4)
+
+Device that brings tactile feelings of VR head pats using mechanical force applied by brushes  
+> [!WARNING]
+> This project is in the development phase. The types of peripherial parts (fasteners, springs, printable parts) can be changed for further improvements
 ## Introduction
 Feel VR head pats in real life!  
-This device monitors hand contacts with a head in VRChat and reproduces cuddles on a head in real life using brushes controlled by servo motors
-![device_preview](https://github.com/user-attachments/assets/33619470-76d3-4ab6-b97f-7be217b56698)
+This device monitors hand collisions with a head in VRChat the sensation of cuddles on a head in real life using brushes controlled by servo motors  
+The current fastening system is compatible only with BOBOVR M2/M3 head straps for Meta Quest 2 and 3. However, there are plans to develop a universal solution for the most common head straps in the future
 
 Inspired by a [similar project that uses vibrating motors](https://github.com/danielfvm/Patstrap)  
 Why another version?
 I found vibrations on a head too unpleasant and decided to try to reproduce head pats in another way  
 
 ## Project parts
-### Server
-This repository includes only the server application that should be launched on the PC along with VRChat. The server communicates with VRChat application using OSC protocol (you can find more details about VRChat OSC [here](https://docs.vrchat.com/docs/osc-overview)) It doesn't have UI but provides useful logs to give you an understanding of what's going on
+### Desktop application
+This repository includes only the application that should be launched on the PC alongside VRChat. The server application communicates with VRChat application using the OSC protocol (you can find more details about VRChat OSC [here](https://docs.vrchat.com/docs/osc-overview))  
+It has UI implemented as a webpage, which opens automatically when the application is launched. The UI helps track the device's status, monitor the current intensity level on each side, and send test signals  
 
 ### Firmware  
 The source code is available [here](https://github.com/Mercuso/headpat-vr-esp)  
-The code is written based on Arduino framework
+The code is written based on Arduino framework  
 
 ### Hardware
 - 2 servo motors
@@ -39,7 +44,7 @@ The documentation and source code of the firmware can be found [here](https://gi
 You need PlatformIO IDE to compile and upload it to your esp32-based board  
 
 ### Hardware
-Since there are only 3 electronic components, the wiring is simple
+Since there are only 3 electronic components, the wiring is simple  
 ![wiring](https://github.com/user-attachments/assets/2473b2b2-1a3f-42c4-86a9-93c490f48358)
 
 You can use a regular power bank as a power supply by connecting it to the expansion board. Make sure that the board jumper is in the right position (in the 5V position)  
@@ -50,8 +55,7 @@ The latest assembly instructions can be found here:
 - [Controller board basement assembly](docs/MC_CASE_ASSEMBLY.md)
 - [Motors mount assembly](docs/HEAD_MOUNT_ASSEMBLY.md)
 
-
-### Server
+### Desktop application
 The latets binary file can be downloaded from the [Releases](https://github.com/Mercuso/headpat-vr/releases) section
 Alternatively, you can build it locally. Download repository, install Python and execute the `build.bat` file. The executable file will be located in the `dist` folder
 
